@@ -6,7 +6,7 @@ npm install typings --global
 
 typings install dt~jquery --global --save
 
-<grid [dataset]=cities 
+<grid [dataset]=cities
     [enableFilter]=true 
     [enableDateRangeFilter] = true
     [dateFormat]="mm/dd/yyyy"
