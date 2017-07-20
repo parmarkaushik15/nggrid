@@ -1,0 +1,134 @@
+.p-0{
+    padding: 0px;
+}
+.grid-pagination-section .pagination {
+    margin: 0px;
+}
+.grid-filter-section {
+    padding: 0px 0px 5px 0px;
+    display: inline-block;
+    width: 100%;
+}
+.grid-layout .table {
+    margin-bottom: 10px;
+}
+.grid-layout{
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.grid-pagination-section {
+    text-align: right;
+}
+.grid-layout .form-control {
+    height: 25px;
+    padding: 3px 10px;
+    line-height: 1.55;
+    font-size: 12px;
+    border-radius: 0px;
+}
+.grid-pagination-section .pagination>li:first-child>a, 
+.grid-pagination-section .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.grid-pagination-section .pagination>li:last-child>a, 
+.grid-pagination-section .pagination>li:last-child>span {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.chosen-container-single .chosen-single {
+     border-radius: 0px !important;   
+}
+dl {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+.dropdown dd,
+.dropdown dt {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dropdown ul {
+  margin: -1px 0 0 0;
+}
+
+.dropdown dd {
+  position: relative;
+}
+
+.dropdown a,
+.dropdown a:visited {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  font-size: 12px;
+}
+.dropdown p{
+    margin: 0px;
+}
+.dropdown dt a {
+    background-color: #ffffff;
+    display: block;
+    padding: 3px 10px;
+    overflow: hidden;
+    line-height: 1.5;
+    border: 0;
+    color: #000;
+    border: 1px solid #ddd;
+}
+.p-r-0{
+    padding-right:0px;
+}
+
+.p-l-0{
+    padding-left:0px;
+}
+.dropdown dt a span,
+.multiSel span {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.dropdown dd ul {
+  background-color: #e2e2e2;
+    border: 0;
+    color: #000;
+    display: none;
+    left: 0px;
+    padding: 2px 15px 2px 5px;
+    position: absolute;
+    top: 2px;
+    width: 100%;
+    list-style: none;
+    height: 100px;
+    overflow: auto;
+}
+
+.dropdown span.value {
+  display: none;
+}
+
+.dropdown dd ul li a {
+  padding: 5px;
+  display: block;
+}
+
+.dropdown dd ul li a:hover {
+  background-color: #fff;
+}
+
+span.hida {
+        color: #a59999;
+    width: 100%;
+}
+.dropdown a::after {
+    content: "\f0d7";
+    font-family: FontAwesome;
+    right: 10px;
+    position: absolute;
+    top: 4px;
+}

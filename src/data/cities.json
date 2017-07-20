@@ -1,0 +1,51 @@
+[{
+    "id":1,
+    "city":"Ahemedabad",
+    "country":"India"
+
+},{
+    "id":2,
+    "city":"Rajkot",
+    "country":"India"
+
+},{
+    "id":3,
+    "city":"Delhi",
+    "country":"India"
+
+},{
+    "id":4,
+    "city":"Lahore",
+    "country":"Pakistan"
+
+},{
+    "id":5,
+    "city":"Kathmandu",
+    "country":"Nepal"
+
+},{
+    "id":6,
+    "city":"Ahemedabad",
+    "country":"India"
+
+},{
+    "id":7,
+    "city":"Rajkot",
+    "country":"India"
+
+},{
+    "id":8,
+    "city":"Delhi",
+    "country":"India"
+
+},{
+    "id":9,
+    "city":"Lahore",
+    "country":"Pakistan"
+
+},{
+    "id":10,
+    "city":"Kathmandu",
+    "country":"Nepal"
+
+}]

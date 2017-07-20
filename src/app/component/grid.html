@@ -1,0 +1,138 @@
+<div class="grid-layout">
+<div class="grid-filter-section">
+                <div class="col-md-1 p-0">
+                    <select class="form-control"  *ngIf="allowPagination" [(ngModel)]=pageSize (change)="changePageSize()">
+                         <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        
+                    </select>
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-3 p-l-0">
+                     <input type="text" class="form-control" name="daterange" id="daterange" *ngIf=enableDateRangeFilter [(ngModel)]=daterange 
+          placeholder="Date Range" />
+                </div>
+                <div class="col-md-2 p-0">
+                    <input type="text" class="form-control" *ngIf=enableFilter [(ngModel)]=query 
+         (keyup)=filter() placeholder="Search" />
+                </div>            
+         </div><div class="grid-content-section">
+            <table [ngClass]="styleClass">
+               <thead>
+                 <tr>
+                   <th *ngFor="let column of columns" [style.width]="column.width">
+                    <span *ngIf="!column.allowSorting">{{column.header}}</span>
+                    <span *ngIf="column.allowSorting && !(currentSortField == column.value)" style="cursor:pointer;" (click)="onSort(column.value, 1)">
+                        {{column.header}}
+                        <i class="fa fa-fw fa-sort"></i>
+                    </span> 
+                    <span *ngIf="column.allowSorting && currentSortField == column.value && currentSortDirection == -1" 
+
+                    style="cursor:pointer;" (click)="onSort(column.value, 1)">
+                        {{column.header}}
+                        <i class="fa fa-fw fa-sort-desc"></i>
+                    </span>
+                    <span *ngIf="column.allowSorting && currentSortField == column.value && currentSortDirection == 1" 
+                    style="cursor:pointer;" (click)="onSort(column.value, -1)">
+                        {{column.header}}
+                        <i class="fa fa-fw fa-sort-asc"></i>
+                    </span>
+                   </th>
+                   <th *ngIf="allowDelete == true || allowView == true">
+                        Action
+                   </th>    
+                 </tr>
+                 <tr *ngIf=enableColumnFilter>
+                   <th *ngFor="let column of columns" >
+
+                    <div *ngIf="column.type=='text'">
+                         <input type="text" class="form-control" [(ngModel)]=column.filtercolumn
+                             *ngIf=column.search placeholder="{{column.placeholder}}" (keyup)="filterColumn(column.filtercolumn, column.value)" />
+                    </div>
+                    <div *ngIf="column.type=='combo'">
+                        <dl class="dropdown"> 
+                            <dt>
+                            <a href="#">
+                            <span class="hida">{{column.placeholder}}</span>    
+                            <p class="multiSel"></p>  
+                            </a>
+                            </dt>
+                            <dd>
+                                <div class="mutliSelect">
+                                    <ul>
+                                        <li *ngFor="let cmb of column.comboSource.split(',')">
+                                            <input type="checkbox" value="{{cmb}}" (change)="checkboxFire(column.value)"/>&nbsp;{{cmb}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </dd>
+                       </dl>
+                    </div>
+                    <div *ngIf="column.type=='date'">
+                         <input type="text" id="{{column.value}}" class="form-control datepicker" [(ngModel)]=column.filtercolumn
+                             *ngIf=column.search placeholder="{{column.placeholder}}" (change)="filterColumn(column.filtercolumn, column.value)" />
+                    </div>     
+                   </th>
+                   <th *ngIf="allowDelete == true || allowView == true">
+                   </th>
+                 </tr>
+               </thead>
+                <tbody *ngFor="let i = index;let row of getData() | orderBy: {property: currentSortField, direction: currentSortDirection}">
+                    <tr>
+                        <td *ngFor="let column of columns;">
+                            <div *ngIf="column.template == ''">
+                            <div *ngIf="row[column.value] != '' || row[column.value] != null || row[column.value] != 'null' || row[column.value] != 'undefined' || row[column.value] != undefined">{{row[column.value]}}</div>
+                            <div *ngIf="row[column.value] == '' || row[column.value] == null || row[column.value] == 'null' || row[column.value] == 'undefined' || row[column.value] == undefined"></div>
+                            </div>
+                            <div *ngIf="column.template != ''" id="{{'template'+i}}"  class="template" >{{setHtml(column.template, i)}}</div>
+                        </td>
+                        <td *ngIf="allowDelete == true || allowView == true">
+                            <button class="btn btn-primary btn-xs btn-view" *ngIf="allowView == true" (click)="viewRecord(row)"><i class="fa" [ngClass]="viewIcon"></i> View</button>
+                            <button class="btn btn-primary btn-xs btn-delete" *ngIf="allowDelete == true" (click)="deleteRecord(row)"><i class="fa" [ngClass]="deleteIcon"></i> Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot *ngIf="allowFooter">
+                 <tr>
+                   <th *ngFor="let column of columns" [style.width]="column.width">
+                    <span *ngIf="!column.allowSorting">{{column.header}}</span>
+                    <span *ngIf="column.allowSorting && !(currentSortField == column.value)" style="cursor:pointer;" (click)="onSort(column.value, 1)">
+                        {{column.header}}
+                        <i class="fa fa-fw fa-sort"></i>
+                    </span> 
+                    <span *ngIf="column.allowSorting && currentSortField == column.value && currentSortDirection == -1" 
+
+                    style="cursor:pointer;" (click)="onSort(column.value, 1)">
+                        {{column.header}}
+                        <i class="fa fa-fw fa-sort-desc"></i>
+                    </span>
+                    <span *ngIf="column.allowSorting && currentSortField == column.value && currentSortDirection == 1" 
+                    style="cursor:pointer;" (click)="onSort(column.value, -1)">
+                        {{column.header}}
+                        <i class="fa fa-fw fa-sort-asc"></i>
+                    </span>
+                   </th>
+                   <th *ngIf="allowDelete == true || allowView == true">
+                        Action
+                   </th>    
+                 </tr>
+                </tfoot>
+               
+  	     </table>
+           </div>
+           <div class="grid-pagination-section" *ngIf="allowPagination">
+               <ul class="pagination pagination-sm">
+                    <li ng-class="{disabled: pageIndex == 0}">
+                        <a (click)="prevPage()">« Prev</a>
+                    </li>
+                <li *ngFor="let page of range(Math.round(totalRows/pageSize), pageIndex+1, pageIndex + pageGap);let i = index;" 
+                [ngClass]="{'active':pageIndex == page-1, 'hide':page <= 0 }"><a (click)="onPageIndexChange(page)">{{page}}</a></li>
+                     <li [ngClass]="{disabled: (pageIndex) == totalRows- 1}">
+                        <a (click)="nextPage()">Next »</a>
+                    </li>
+                </ul>        
+           </div>
+</div>
